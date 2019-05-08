@@ -8,7 +8,7 @@ class StorePicker extends React.Component {
       // <p>Hello World!</p>
       //   <React.Fragment>
       <Fragment>
-        <p>Fish!</p>
+        {/* <p>Fish!</p> */}
         <form className="store-selector">
           {/* this is a comment in JSX */}
           <h2>Please Enter A Store</h2>
