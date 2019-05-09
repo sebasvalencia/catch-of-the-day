@@ -11,6 +11,13 @@ class App extends React.Component {
     order: {}
   };
 
+  loadSamplesFishes = () => {
+    console.log('loadSamplesFishes');
+    this.setState({
+      fishes : fishes
+    });
+  };
+
   /*** Add a Fish to the state ***/
   addFish = fish => {
     console.log("Adding a fish!");
@@ -35,7 +42,10 @@ class App extends React.Component {
         </div>
         <Order />
 
-        <Inventory addFish={this.addFish} />
+        <Inventory
+          addFish={this.addFish}
+          loadSamplesFishes={this.loadSamplesFishes}
+        />
       </div>
     );
   }
