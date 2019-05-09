@@ -10,9 +10,10 @@ class AddFishForm extends React.Component {
   imageRef = React.createRef();
 
   createFish = event => {
+    console.log("Making a Fish +Fish");
+
     //1. Stop the form from submitting
     event.preventDefault();
-    console.log("Making a Fish +Fish");
     //2. Get values from the form
     console.log(this.nameRef.current.value);
 
@@ -24,6 +25,12 @@ class AddFishForm extends React.Component {
       image: this.imageRef.current.value
     };
     console.log(fish);
+
+    //3. Add Fish we pass the function like a prop
+    this.props.addFish(fish);
+
+    //4. Refresh the form
+    event.currentTarget.reset();
   };
 
   render() {
