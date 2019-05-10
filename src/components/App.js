@@ -4,6 +4,7 @@ import Inventory from "./Inventory";
 import Order from "./Order";
 import fishes from "../sample-fishes";
 import Fish from "./Fish";
+import base from "../base";
 
 class App extends React.Component {
   //1. Create the state like a initial state = empty state
@@ -11,6 +12,29 @@ class App extends React.Component {
     fishes: {},
     order: {}
   };
+
+  /***
+    Mirror our fish state over to what is our firebase
+    The way that we connect with the endpoint/firebase 
+  ***/
+  componentDidMount() {
+    console.log("MOUNTED!");
+
+    //ref differents from the inputs, sort of the reference to a piece of data in the DB
+    //sync our state we do not have to do any updating
+    const {params} = this.props.match;
+    this.refBase = base.syncState(`${params.storeId}/fishes`, {
+      context: this,
+      state: "fishes"
+    });
+  }
+
+  /*** remove refBase from DB  ***/
+  componentWillUnmount() {
+    //clean up any memory issues that may have
+    console.log("UNMOUNTEDING!!!");
+    base.removeBinding(this.refBase);
+  }
 
   loadSamplesFishes = () => {
     console.log('loadSamplesFishes');
