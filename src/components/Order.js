@@ -7,6 +7,10 @@ class Order extends React.Component {
         const fish = this.props.fishes[key]; //object fish
         const count = this.props.order[key]; //many fish buy
         const isAvailable = fish && fish.status === "available";
+
+        //make sure the fish is loaded before we continue
+        if (!fish) return null; //render nothing
+
         if(!isAvailable){
             return (<li key={key}>
                Sorry {fish ? fish.name : "fish"} is no longer available

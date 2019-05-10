@@ -20,13 +20,33 @@ class App extends React.Component {
   componentDidMount() {
     console.log("MOUNTED!");
 
+    const {params} = this.props.match;
+
+    //First reinstate our localStorage
+    const localStorageRef = localStorage.getItem(params.storeId);
+    console.log(localStorageRef);
+    if (localStorageRef) {
+      this.setState({
+        order: JSON.parse(localStorageRef) //string to object
+      });
+    }
+    
     //ref differents from the inputs, sort of the reference to a piece of data in the DB
     //sync our state we do not have to do any updating
-    const {params} = this.props.match;
     this.refBase = base.syncState(`${params.storeId}/fishes`, {
       context: this,
       state: "fishes"
     });
+
+  }
+  
+  componentDidUpdate() {
+    console.log('IT UPDATED');
+    //we can use this.props or this.state
+    console.log(this.state.order);
+
+    //JSON.stringify(this.state.order) for do not give [object Object]
+    localStorage.setItem(this.props.match.params.storeId, JSON.stringify(this.state.order));
   }
 
   /*** remove refBase from DB  ***/
@@ -35,6 +55,7 @@ class App extends React.Component {
     console.log("UNMOUNTEDING!!!");
     base.removeBinding(this.refBase);
   }
+
 
   loadSamplesFishes = () => {
     console.log('loadSamplesFishes');
