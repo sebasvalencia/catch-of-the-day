@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { getFunName } from "../helpers";
+import PropTypes from "prop-types";
 
 class StorePicker extends React.Component {
   // handleClick = e => {
@@ -11,6 +12,10 @@ class StorePicker extends React.Component {
   //Create ref
   myInput = React.createRef();
 
+  static propTypes = {
+    history: PropTypes.object
+  };
+
   goToStore = event => {
     console.log("Going to store");
     //1. Stop the form from submitting
@@ -20,7 +25,7 @@ class StorePicker extends React.Component {
     const storeName = this.myInput.current.value;
     console.log("storeName:", storeName);
     //3.Change the page to /store/whatever-they-entered
-    this.props.history.push(`/store/${storeName}` );
+    this.props.history.push(`/store/${storeName}`);
   };
 
   //what html element do I put in the DOM

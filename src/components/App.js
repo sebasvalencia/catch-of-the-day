@@ -5,6 +5,7 @@ import Order from "./Order";
 import fishes from "../sample-fishes";
 import Fish from "./Fish";
 import base from "../base";
+import PropTypes from "prop-types";
 
 class App extends React.Component {
   //1. Create the state like a initial state = empty state
@@ -12,6 +13,10 @@ class App extends React.Component {
     fishes: {},
     order: {}
   };
+
+  static propTypes = {
+    match : PropTypes.object
+  }
 
   /***
     Mirror our fish state over to what is our firebase

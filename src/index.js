@@ -14,4 +14,4 @@ import "./css/style.css";
 //render(<p>HEYYYY</p>, document.querySelector('#main'));
 // render(<StorePicker />, document.querySelector('#main'));
 // render(<App />, document.querySelector("#main"));
-render(<Router />, document.querySelector('#main'));
+render(<Router />, document.querySelector("#main"));
