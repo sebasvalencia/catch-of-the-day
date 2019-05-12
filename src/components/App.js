@@ -162,6 +162,7 @@ class App extends React.Component {
         <Inventory
           fishes={this.state.fishes}
           loadSamplesFishes={this.loadSamplesFishes}
+          storeId={this.props.match.params.storeId}
           addFish={this.addFish}
           deleteFish={this.deleteFish}
           updateFish={this.updateFish}
